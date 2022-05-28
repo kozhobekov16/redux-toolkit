@@ -1,25 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState} from "react";
+import {BrowserRouter, Routes, Route, NavLink} from "react-router-dom";
+import Home from "./Home";
+import Basket from "./Basket";
+import Todo from "./Todo";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [cart, setCart] = useState([])
+    useEffect(() => {
+        fetch('https://jsonplaceholder.typicode.com/todos/')
+            .then(response => response.json())
+            .then(json => setCart(json))
+    }, [])
+    return (
+            <BrowserRouter>
+                <div className="App">
+                    <h1>Redux-toolkit</h1>
+                    <header>
+                        <NavLink to='/'>Home</NavLink>
+                        <NavLink to='/basket'>Basket</NavLink>
+                        <NavLink to='/todos'>Todos</NavLink>
+                    </header>
+                    <Routes>
+                        <Route path="/" element={<Home cart={cart}/>}/>
+                        <Route path="/basket" element={<Basket/>}/>
+                        <Route path="/todos" element={<Todo/>}/>
+                    </Routes>
+                </div>
+            </BrowserRouter>
+    );
 }
 
 export default App;
