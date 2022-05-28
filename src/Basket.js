@@ -1,9 +1,9 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {removeProduct} from "./redux/slices/countSlice";
+import {removeProduct} from "./redux/slices/productsSlice";
 
 const Basket = () => {
-    const products = useSelector(state => state.countSlice.products)
+    const products = useSelector(state => state.productsSlice.products)
     const dispatch = useDispatch()
     const removeItem = (id) => {
         dispatch(removeProduct(id))

@@ -1,13 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-    products: [{
-        text: 'Learn',
-        id: Date.now()
-    }],
+    products: [],
 }
 
-export const countSlice = createSlice({
+export const productsSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
@@ -21,6 +18,6 @@ export const countSlice = createSlice({
 })
 
 
-export const {addToCart, removeProduct} = countSlice.actions
+export const {addToCart, removeProduct} = productsSlice.actions
 
-export default countSlice.reducer
+export default productsSlice.reducer
